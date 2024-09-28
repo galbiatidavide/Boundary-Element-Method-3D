@@ -28,39 +28,46 @@ fprintf('-- LAPLACE EQUATION: 3D BEM WITH COLLOCATION AND LINEAR ELEMENTS --\n')
 fprintf('\n')
 
 %% PREPROCESSING
-
-% INITIAL CHECK
-if length(data.filename) ~= 1
-    error('Only one STL file at a time must be provided');
-else
-    data.filename = data.filename{1};
-end
+% 
+% % INITIAL CHECK
+% if length(data.filename) ~= 1
+%     error('Only one STL file at a time must be provided');
+% else
+%     data.filename = data.filename{1};
+% end
 
 % READING PROVIDED MESH FILE
-fprintf('-- IMPORTING MESH FILE --\n')
-tic
-[TR,fileformat,attributes,solidID] = stlread(data.filename);
-toc
-fprintf(data.filename);
-fprintf(' read!\n');
-if data.enable_postprocessing ~= 0
-    figure
-    trimesh(TR, 'EdgeColor', 'b')
-    axis equal
-    title('Imported mesh')
-end
+% fprintf('-- IMPORTING MESH FILE --\n')
+% tic
+% [TR,fileformat,attributes,solidID] = stlread(data.filename);
+% toc
+% fprintf(data.filename);
+% fprintf(' read!\n');
+% if data.enable_postprocessing ~= 0
+%     figure
+%     trimesh(TR, 'EdgeColor', 'b')
+%     axis equal
+%     title('Imported mesh')
+% end
+
+% This file is used to load the mesh generated with GMSH in a .msh file.
+% Since MATLAB does not support quadratic elements this mesh is generated
+% in python with GMSH and then the connectivity, points and triangles data
+% are loaded separately as .mat files.
+
+% Load the .mat file into MATLAB
+TR = load('mesh_data_struct.mat');
 
 % COMPUTING BARICENTERS COORDINATES
 fprintf('-- COMPUTING COORDINATES --\n')
-n_elements = length(TR.ConnectivityList);
-triangles = zeros(n_elements, 3, 3);
 tic
-for i = 1:n_elements
-    % extracting 3D coordinates of the vertices of each flat triangle
-    triangles(i,:,:) = [TR.Points(TR.ConnectivityList(i,1),:); ...
-                        TR.Points(TR.ConnectivityList(i,2),:); ...
-                        TR.Points(TR.ConnectivityList(i,3),:)];
-end
+% for i = 1:n_elements
+%     % extracting 3D coordinates of the vertices of each flat triangle
+%     triangles(i,:,:) = [TR.Points(TR.ConnectivityList(i,1),:); ...
+%                         TR.Points(TR.ConnectivityList(i,2),:); ...
+%                         TR.Points(TR.ConnectivityList(i,3),:)];
+% end
+triangles = TR.triangles;
 nodes = TR.Points;
 n_elements = size(TR.ConnectivityList,1);
 % computing normals to each face of the triangulation
