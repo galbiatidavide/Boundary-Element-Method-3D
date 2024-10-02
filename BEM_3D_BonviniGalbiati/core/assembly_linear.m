@@ -39,7 +39,6 @@ basis_functions_eval = zeros(size(quadrature_nodes,1), 3);
 for q = 1:size(quadrature_nodes,1)
    basis_functions_eval(q,:) = basis_functions(quadrature_nodes(q,:));
 end
-basis_functions_eval
 
 %% CONSTRUCT DATA STRUCTURES TO ENABLE VECTORIZATION
 

@@ -20,18 +20,17 @@
 % alpha: the interior solid angle at each node
 
 %% INITIALIZATION OF STRUCTURES
-% n_points = size(points,1);
-% nodes = TR.Points;
-% n_nodes = size(nodes,1);
-% is_boundary_system = (n_nodes == n_points); % checks if the nodes are
-%                                             % the same as the points
-% if is_boundary_system
-%     is_boundary_system = (nodes == points);
-% end
-
 n_points = size(points,1);
-H_hat = zeros(n_points, n_points);
-G = zeros(n_points, n_points);
+nodes = TR.Points;
+n_nodes = size(nodes,1);
+is_boundary_system = (n_nodes == n_points); % checks if the nodes are
+                                            % the same as the points
+if is_boundary_system
+    is_boundary_system = (nodes == points);
+end
+
+H_hat = zeros(n_points, n_nodes);
+G = zeros(n_points, n_nodes);
 % basis_functions = @(csi) [1 - csi(1) - csi(2); csi(1); csi(2)];
 basis_functions = @(csi) ...
     [(1-csi(1)-csi(2)).*(1-2*csi(1)-2*csi(2)); ...
@@ -44,7 +43,7 @@ basis_functions = @(csi) ...
 % quadrature_nodes = [0.5 0;
 %                      0.5 0.5;
 %                      0 0.5];
-quadrature_nodes = [0 0; 1 0; 0 1; 0.5 0; 0.5 0.5; 0 0.5];
+quadrature_nodes = 0.5.*[0 0; 1 0; 0 1; 0.5 0; 0.5 0.5; 0 0.5];
 
 basis_functions_eval = zeros(size(quadrature_nodes,1), 6);
 for q = 1:size(quadrature_nodes,1)
@@ -80,6 +79,10 @@ for j = 1:n_elements
     x = triangle(:,1);
     y = triangle(:,2);
     z = triangle(:,3);
+
+    x_vertex = x(1:3);
+    y_vertex = y(1:3);
+    z_vertex = z(1:3);
     
     % constructing a data structure to enable vectorization: *_tria_rep
     % is a column vector which contains [*_{1}, *_{2}, *_{3}] 
@@ -93,10 +96,11 @@ for j = 1:n_elements
     
     % values for mid-point quadrature formula in a triangle
     ons = [1 1 1];
-    weight = 1/3;
-    area = 0.5 * sqrt(det([x';y';ons])^2 + ...
-        det([y';z';ons])^2 + ...
-        det([z';x';ons])^2);
+    % weight = 1/3;
+    weight = 1/6;
+    area = 0.5 * sqrt(det([x_vertex';y_vertex';ons])^2 + ...
+        det([y_vertex';z_vertex';ons])^2 + ...
+        det([z_vertex';x_vertex';ons])^2);
  
     % parametrized coordinates for midpoint quadrature formula in a
     % triangle
@@ -130,7 +134,7 @@ for j = 1:n_elements
     if is_boundary_system
         for local_index=1:6
             G(iglo(local_index),iglo) = G(iglo(local_index),iglo) + ...
-                single_layer_potential_singular(area, triangle, local_index);
+                single_layer_potential_singular_quadratic(area, triangle, local_index);
         end
     end
 end

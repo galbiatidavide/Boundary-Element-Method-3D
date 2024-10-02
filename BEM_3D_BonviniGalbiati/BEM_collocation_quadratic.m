@@ -71,7 +71,7 @@ triangles = TR.triangles;
 nodes = TR.Points;
 n_elements = size(TR.ConnectivityList,1);
 % computing normals to each face of the triangulation
-face_normals = faceNormal(TR);
+face_normals = calculateNormals(TR);
 toc
 fprintf('-- END PREPROCESSING --\n\n')
 
@@ -81,7 +81,7 @@ fprintf('-- END PREPROCESSING --\n\n')
 % GREEN FUNCTION AND ITS DERIVATIVE
 fprintf('-- ASSEMBLING GLOBAL MATRICES --\n')
 tic
-[G, H_hat, H, alpha] = assembly_linear(triangles, face_normals, nodes, ...
+[G, H_hat, H, alpha] = assembly_quadratic(triangles, face_normals, nodes, ...
     n_elements, TR);
 toc
 

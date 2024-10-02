@@ -32,7 +32,7 @@ data.neumann = @neu;
 % computational time, especially with fine meshes. If the first element is
 % different from 0, the second element represents the fixed z coordinate
 % for the plot inside the domain on a x-y plane with z fixed
-data.enable_postprocessing = [1, 0.5];
+data.enable_postprocessing = [0, 0.5];
 
 % the exact solution
 data.u_exact = @(x,y,z) x;

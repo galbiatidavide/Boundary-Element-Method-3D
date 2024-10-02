@@ -1,3 +1,3 @@
 clear all
-data = create_data;
-[~, ~, ~] = BEM_collocation_linear(data);
+data = create_data_quadratic;
+[~, ~, ~] = BEM_collocation_quadratic(data);
