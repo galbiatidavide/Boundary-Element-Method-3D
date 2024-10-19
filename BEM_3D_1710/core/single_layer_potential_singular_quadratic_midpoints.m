@@ -40,18 +40,32 @@ B = (midpoints(3,:) - midpoints(1,:)) * (midpoints(2,:) - midpoints(1,:))' ./ ..
     (norm((midpoints(2,:) - midpoints(1,:))));
 C = (norm((midpoints(3,:) - midpoints(1,:)))) ./ ...
     (norm((midpoints(2,:) - midpoints(1,:))));
-q_11 = @(chi) 1/12*tan(chi).*(2*tan(chi)-3).*sec(chi);
-q_12 = @(chi) -1/12*csc(chi);
-q_21 = @(chi) -1/12*sec(chi);
-q_22 = @(chi) 1/12*cot(chi).*(2*cot(chi)-3).*csc(chi);
-q_31 = @(chi) 1/12*(2*tan(chi).^2+tan(chi)-1).*sec(chi);
-q_32 = @(chi) 1/24*csc(chi).^3.*(sin(2*chi)+3*cos(2*chi)+1);
-q_41 = @(chi) -1/6*(tan(chi)-3).*sec(chi);
-q_42 = @(chi) -1/6*(cot(chi)-3).*csc(chi);
-q_51 = @(chi) 1/6*(tan(chi)+1).*sec(chi);
-q_52 = @(chi) 1/6*(-2*cot(chi).^2+cot(chi)+3).*csc(chi);
-q_61 = @(chi) 1/12*sec(chi).^3.*(sin(2*chi)+5*cos(2*chi)+1);
-q_62 = @(chi) 1/6*(cot(chi)+1).*csc(chi);
+% q_11 = @(chi) 1/12*tan(chi).*(2*tan(chi)-3).*sec(chi);
+% q_12 = @(chi) -1/12*csc(chi);
+% q_21 = @(chi) -1/12*sec(chi);
+% q_22 = @(chi) 1/12*cot(chi).*(2*cot(chi)-3).*csc(chi);
+% q_31 = @(chi) 1/12*(2*tan(chi).^2+tan(chi)-1).*sec(chi);
+% q_32 = @(chi) 1/24*csc(chi).^3.*(sin(2*chi)+3*cos(2*chi)+1);
+% q_41 = @(chi) -1/6*(tan(chi)-3).*sec(chi);
+% q_42 = @(chi) -1/6*(cot(chi)-3).*csc(chi);
+% q_51 = @(chi) 1/6*(tan(chi)+1).*sec(chi);
+% q_52 = @(chi) 1/6*(-2*cot(chi).^2+cot(chi)+3).*csc(chi);
+% q_61 = @(chi) 1/12*sec(chi).^3.*(sin(2*chi)+5*cos(2*chi)+1);
+% q_62 = @(chi) 1/6*(cot(chi)+1).*csc(chi);
+
+%Integrali: Dave's version
+q_11 = @(chi) -sec(chi)/48; %ok
+q_12 = @(chi) 1/48*cot(chi).*(2*cos(chi)-3).*csc(chi); %ok
+q_21 = @(chi) 1/48*tan(chi).*(2*tan(chi)-3).*sec(chi); %ok
+q_22 = @(chi) -csc(chi)/48; %ok
+q_31 = @(chi) 1/48*(2*tan(chi).^2+tan(chi)-1).*sec(chi); %ok
+q_32 = @(chi) 1/96*(csc(chi).^3).*(sin(2*chi)+3*cos(2*chi)+1);%ok
+q_41 = @(chi) -1/24*(tan(chi)-3).*sec(chi); %ok
+q_42 = @(chi) -1/24*(cot(chi)-3).*csc(chi); %ok
+q_51 = @(chi) 1/48*sec(chi).^3.*(sin(2*chi)+5*cos(2*chi)+1); %ok
+q_52 = @(chi) 1/24*(cot(chi)+1).*csc(chi); %ok
+q_61 = @(chi) 1/24*(tan(chi)+1).*sec(chi);%ok
+q_62 = @(chi) 1/24*(-2*cot(chi).^2+cot(chi)+3).*csc(chi);
 
 
 denominator = @(chi) sqrt(cos(chi).^2 + B*sin(2*chi) + C*sin(chi).^2);
@@ -68,7 +82,7 @@ integrand_52 = @(chi) q_52(chi) ./ denominator(chi);
 integrand_61 = @(chi) q_61(chi) ./ denominator(chi);
 integrand_62 = @(chi) q_62(chi) ./ denominator(chi);
 
-coeff = 1/(4*pi) * 2 * area / norm((midpoints(2,:) - midpoints(1,:)));
+coeff = 1/(4*pi) * 2*area / norm((midpoints(2,:) - midpoints(1,:)));
 %% quel 2*area non mi torna per niente perche' in teoria lui qui sta lavorando sul triangolo fisico
 %% dovrebbe essere gia' giusto. (Non sta usando le coordinate sul triangolo di quadratura)
 
