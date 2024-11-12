@@ -43,7 +43,7 @@ data.dn_u_exact = @(x,y,z) - 1.0 .* (x == 0) + ...
 % if the first element is different from 0, the second indicates the 
 % the tolerance and the third indicates the number of gmres iterations
 data.enable_iterative_solver = [0, 1e-6, 10];
-data.bc_type = 'mixed';
+data.bc_type = 'fully Dirichlet';
 end
 
 %% BOUNDARY CONDITIONS FUNCTIONS
@@ -53,8 +53,8 @@ end
 
 function value = dir(x,y,z)
 value = x;
-value(x==0) = nan;
-value(x==1) = nan;
+% value(x==0) = nan;
+% value(x==1) = nan;
 % value(x==0) = -1.0;
 % value(x==1) = 1.0;
 % value(y==0) = -1.0;
@@ -65,8 +65,8 @@ end
 
 function value = neu(x,y,z)
 value = nan(size(y));
-value(x==0) = -1.0;
-value(x==1) = 1.0;
+% value(x==0) = -1.0;
+% value(x==1) = 1.0;
 % value(y==0) = 0.0;
 % value(y==1) = 0.0;
 % value(z==0) = 0.0;

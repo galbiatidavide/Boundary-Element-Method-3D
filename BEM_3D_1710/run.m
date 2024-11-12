@@ -17,7 +17,7 @@ elseif element_order == 1
     data = create_data();
     [~, ~, ~] = BEM_collocation_linear(data);
 elseif element_order == 2
-    data = create_data_quadratic('mesh_data_struct_0.125_giusta.mat');
+    data = create_data_quadratic('mesh_data_struct_0.0625_giusta.mat');
     [~, ~, ~] = BEM_collocation_quadratic(data);
 else
     fprintf('Error: Insert a valid element order in the run file: constant (0), linear (1) or quadratic (2) elements\n')
