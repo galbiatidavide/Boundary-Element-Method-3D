@@ -36,7 +36,7 @@ data.neumann = @neu;
 data.enable_postprocessing = [1, 0.5];
 
 % the exact solution
-data.u_exact = @(x,y,z) sin(2*pi*x).*sin(2*pi*y).*sin(2*pi*z);
+data.u_exact = @(x,y,z) x;
 data.dn_u_exact = @(x,y,z) - 1.0 .* (x == 0) + ...
                            1.0 .* (x == 1);
 
@@ -44,7 +44,7 @@ data.dn_u_exact = @(x,y,z) - 1.0 .* (x == 0) + ...
 % if the first element is different from 0, the second indicates the 
 % the tolerance and the third indicates the number of gmres iterations
 data.enable_iterative_solver = [0, 1e-6, 10];
-data.bc_type = 'fully Dirichlet';
+data.bc_type = 'mixed';
 end
 
 %% BOUNDARY CONDITIONS FUNCTIONS
@@ -54,8 +54,8 @@ end
 
 function value = dir(x,y,z)
 value = x;
-% value(x==0) = nan;
-% value(x==1) = nan;
+value(x==0) = nan;
+value(x==1) = nan;
 % value(x==0) = -1.0;
 % value(x==1) = 1.0;
 % value(y==0) = -1.0;

@@ -144,7 +144,7 @@ if data.enable_iterative_solver(1) ~= 0
 
 else
     % Direct solver if iterative solver is not enabled
-    sol = lsqr(A,rhs,1e-6);
+    sol = lsqr(A,rhs,[],5000);
 end
 
 
