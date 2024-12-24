@@ -14,8 +14,8 @@ A simple example of a result provided by the code. Test case 3 (cfr. /results fd
 
 Another example: test case 2 solving an oscillating problem with mixed bc's on a cubic domain with quadratic elements.
 
-![Example Surface Mesh](results/test_case_3/test_case_2_u_n_quadratic.jpg)
+![Example Surface Mesh](results/test_case_2/test_case_2_u_n_quadratic.jpg)
 *Figure 4: normal derivative of u (solution).*
 
-![Example Surface Mesh](results/test_case_3/test_case_2_u_quadratic.jpg)
+![Example Surface Mesh](results/test_case_2/test_case_2_u_quadratic.jpg)
 *Figure 5: u (solution).*
