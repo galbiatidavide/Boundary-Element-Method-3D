@@ -11,3 +11,11 @@ A simple example of a result provided by the code. Test case 3 (cfr. /results fd
 
 ![Example Surface Mesh](results/test_case_3/u_domain_linear_1_R_6.jpg)
 *Figure 3: inside domain implementation (not fully implemented for non-connected surfaces) toroidal surf. R = 6.*
+
+Another example: test case 2 solving an oscillating problem with mixed bc's on a cubic domain with quadratic elements.
+
+![Example Surface Mesh](results/test_case_3/test_case_2_u_n_quadratic.jpg)
+*Figure 4: normal derivative of u (solution).*
+
+![Example Surface Mesh](results/test_case_3/test_case_2_u_quadratic.jpg)
+*Figure 5: u (solution).*
