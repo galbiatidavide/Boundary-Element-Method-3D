@@ -3,7 +3,7 @@ This repository contains a MATLAB implementation of the Boundary Element Method 
 
 A simple example of a result provided by the code. Test case 3 (cfr. /results fd) is shown here below:
 
-![Example Surface Mesh](results/u_n_quadratic_torus_0.25_R_2.jpg)
+![Example Surface Mesh](/results/u_n_quadratic_torus_0.25_R_2.jpg)
 *Figure 1: normal derivative of u (solution) toroidal surf. R = 2.*
 
 ![Example Surface Mesh](results/u_quadratic_torus_0.25_R_2.jpg)
