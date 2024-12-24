@@ -7,7 +7,7 @@ A simple example of a result provided by the code. Test case 3 (cfr. /results fd
 *Figure 1: normal derivative of u (solution) toroidal surf. R = 2.*
 
 ![Example Surface Mesh](results/test_case_3/u_quadratic_torus_0.25_R_2.jpg)
-*Figure 1: assigned Dirichlet condition toroidal surf. R = 2.*
+*Figure 2: assigned Dirichlet condition toroidal surf. R = 2.*
 
 ![Example Surface Mesh](results/test_case_3/u_domain_linear_1_R_6.jpg)
-*Figure 1: inside domain implementation (not fully implemented for non-connected surfaces) toroidal surf. R = 6.*
+*Figure 3: inside domain implementation (not fully implemented for non-connected surfaces) toroidal surf. R = 6.*
