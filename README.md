@@ -21,5 +21,5 @@ Another example: test case 2 solving an oscillating problem with mixed bc's on a
 *Figure 5: u (solution).*
 
 Implemented by 
-**Davide Galbiati**
+**Davide Galbiati** and
 **Giovanni Maria Bonvini**
