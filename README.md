@@ -19,3 +19,7 @@ Another example: test case 2 solving an oscillating problem with mixed bc's on a
 
 ![Example Surface Mesh](results/test_case_2/test_case_2_u_quadratic.jpg)
 *Figure 5: u (solution).*
+
+Implemented by 
+Davide Galbiati
+Giovanni Maria Bonvini
